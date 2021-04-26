@@ -102,7 +102,6 @@ function getCoursesFromStorage() {
     }
     return courses;
 }
-
 //Remove course from the DOM
 function removeCourse(e) {
     let course, courseId;
@@ -115,4 +114,22 @@ function removeCourse(e) {
     console.log(courseId);
     //Remove from the Local Storage
     removeCourseLocalStorage(courseId);
+}
+//Add the rest of the array
+localStorage.setItem('courses', JSON.stringify(coursesLS));
+
+//Clears the shopping cart
+function clearCart() {
+    //shoppingCartContent.innerHTML = '';
+
+    while(shoppingCartContent.firstChild) {
+        shoppingCartContent.removeChild(shoppingCartContent.firstChild);
+    }
+
+    //Clear from local storage
+    clearLocalStorage();
+}
+//clear the whole local storage
+function clearLocalStorage() {
+    localStorage.clear();
 }
