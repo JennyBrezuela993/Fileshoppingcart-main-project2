@@ -40,3 +40,41 @@ function buyCourse(e) {
         getCourseInfo(course);
     }
 }
+//Reads the HTML information of the selected course
+function getCourseInfo(course) {
+    //Create an object with course data
+    const courseInfo = {
+        image:course.querySelector('img').src,
+        title:course.querySelector('h4').textContent,
+        price:course.querySelector('.price span').textContent,
+        id:course.querySelector('a').getAttribute('data-id')
+    }
+    //Insert into the shopping cart
+    addIntoCart(courseInfo);
+}
+//Display the Selected course into the shopping cart
+
+function addIntoCart(course){
+    //Create a <tr>
+    const row = document.createElement('tr');
+
+    //Build the template
+    row.innerHTML = `
+        <tr>
+            <td>
+                <img src="${course.image}" width=100>
+            </td>
+            <td>${course.title}</td>
+            <td>${course.price}</td>
+            <td>
+                <a href="#" class="remove" data-id="${course.id}">X</a>
+            </td>
+        </tr>
+    `;
+    //Add into the shopping cart
+    shoppingCartContent.appendChild(row);
+
+    //Add course into storage
+    saveIntoStorage(course);
+
+}
