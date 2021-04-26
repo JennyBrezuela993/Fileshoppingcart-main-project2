@@ -102,3 +102,17 @@ function getCoursesFromStorage() {
     }
     return courses;
 }
+
+//Remove course from the DOM
+function removeCourse(e) {
+    let course, courseId;
+    //Remove from the DOM
+    if(e.target.classList.contains('remove')) {
+        e.target.parentElement.parentElement.remove();
+        course = e.target.parentElement.parentElement;
+        courseId = course.querySelector('a').getAttribute('data-id');
+    }
+    console.log(courseId);
+    //Remove from the Local Storage
+    removeCourseLocalStorage(courseId);
+}
